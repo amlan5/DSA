@@ -1,0 +1,39 @@
+class Solution
+{
+	public:
+	void go(string s, int i, set<string>& ans)
+{
+    if(i==s.size())
+    {
+        ans.insert(s);
+        return;
+    }
+    for(int j=i; j<s.size(); j++)
+    {
+        string temp = s;
+        char t=temp[i];
+        temp[i]=temp[j];
+        temp[j]=t;
+        //eg - AAB
+        // if(i!=j && s[i] == s[j])
+        //     continue;
+        go(temp, i+1, ans);
+        //backtracking
+        // char u=temp[i];
+        // temp[i]=temp[j];
+        // temp[j]=t;
+    }
+    return;
+}
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    set<string> ans;
+		    vector<string> vec;
+		    go(S,0,ans);
+		    for(auto it:ans){
+		        vec.push_back(it);
+		    }
+		    return vec;
+		}
+};
